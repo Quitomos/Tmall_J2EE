@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: dao.PropertyDAOTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.538 s <<< FAILURE! - in dao.PropertyDAOTest
-testPropertyDAO(dao.PropertyDAOTest)  Time elapsed: 0.538 s  <<< ERROR!
-java.lang.NullPointerException
-	at dao.PropertyDAOTest.testPropertyDAO(PropertyDAOTest.java:14)
-
