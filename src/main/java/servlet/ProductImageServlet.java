@@ -104,6 +104,6 @@ public class ProductImageServlet extends BaseBackServlet {
         request.setAttribute("pisSingle", singleImages);
         request.setAttribute("pisDetail", detailImages);
         request.setAttribute("p", product);
-        super.dispatcher(request, response, "/admin/listProductImage.jsp");
+        super.dispatcher(request, response, "admin/listProductImage.jsp");
     }
 }

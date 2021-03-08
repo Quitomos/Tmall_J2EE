@@ -36,6 +36,7 @@ public class ForeServlet extends BaseForeServlet {
         super.redirect(response, "registerSuccess.jsp");
     }
 
+    //重定向的路径加"/"表示绝对路径，没有项目名
     public void login(HttpServletRequest request, HttpServletResponse response, Page page) {
         String name = request.getParameter("name");
         String password = request.getParameter("password");
@@ -50,13 +51,13 @@ public class ForeServlet extends BaseForeServlet {
         request.getSession().setAttribute("user", user);
         request.getSession().setAttribute("cartTotalItemNumber", orderItemDAO.getCartTotal(user));
 
-        super.redirect(response, "/forehome");
+        super.redirect(response, "forehome");
     }
 
     public void logout(HttpServletRequest request, HttpServletResponse response, Page page) {
         request.getSession().invalidate();
 
-        super.redirect(response, "/forehome");
+        super.redirect(response, "forehome");
     }
 
     public void product(HttpServletRequest request, HttpServletResponse response, Page page) {
@@ -71,7 +72,7 @@ public class ForeServlet extends BaseForeServlet {
         request.setAttribute("reviews", reviews);
         request.setAttribute("pvs", propertyValues);
 
-        super.dispatcher(request, response, "/product.jsp");
+        super.dispatcher(request, response, "product.jsp");
     }
 
     public void checkLogin(HttpServletRequest request, HttpServletResponse response, Page page) {

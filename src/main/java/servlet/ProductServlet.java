@@ -61,7 +61,7 @@ public class ProductServlet extends BaseBackServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         Product product = productDAO.get(id);
         request.setAttribute("p", product);
-        super.dispatcher(request, response, "/admin/editProduct.jsp");
+        super.dispatcher(request, response, "admin/editProduct.jsp");
     }
 
     @Override
