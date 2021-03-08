@@ -12,7 +12,7 @@ import java.util.List;
 
 public class PropertyValueDAO {
     public void add(PropertyValue propertyValue) {
-        String sql = "insert into propertyValue values(null, ?, ?, ?)";
+        String sql = "insert into propertyvalue values(null, ?, ?, ?)";
         try (Connection c = DBUtil.getConnection(); PreparedStatement s = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             s.setString(1, propertyValue.getValue());
             s.setInt(2, propertyValue.getProperty().getId());
@@ -27,7 +27,7 @@ public class PropertyValueDAO {
 
     public void delete(int id) {
         try (Connection c = DBUtil.getConnection(); Statement s = c. createStatement()) {
-            String sql = "delete from propertyValue where id = " + id;
+            String sql = "delete from propertyvalue where id = " + id;
             s.execute(sql);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -35,7 +35,7 @@ public class PropertyValueDAO {
     }
 
     public void update(PropertyValue propertyValue) {
-        String sql = "update propertyValue set value = ? where id = ?";
+        String sql = "update propertyvalue set value = ? where id = ?";
         try (Connection c = DBUtil.getConnection(); PreparedStatement s = c.prepareStatement(sql)) {
             s.setString(1, propertyValue.getValue());
             s.setInt(2, propertyValue.getId());
@@ -48,7 +48,7 @@ public class PropertyValueDAO {
     public PropertyValue get(int id) {
         PropertyValue ret = null;
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
-            String sql = "select * from propertyValue where id = " + id;
+            String sql = "select * from propertyvalue where id = " + id;
             ResultSet rs = s.executeQuery(sql);
             if (rs.next()) {
                 ret = new PropertyValue();
@@ -65,7 +65,7 @@ public class PropertyValueDAO {
 
     public PropertyValue get(Product product, Property property) {
         PropertyValue ret = null;
-        String sql = "select * from propertyValue where productId = ? and propertyId = ?";
+        String sql = "select * from propertyvalue where productId = ? and propertyId = ?";
         try (Connection c = DBUtil.getConnection(); PreparedStatement s = c.prepareStatement(sql)) {
             s.setInt(1, product.getId());
             s.setInt(2, property.getId());
@@ -86,7 +86,7 @@ public class PropertyValueDAO {
 
     public List<PropertyValue> list(Product product) {
         List<PropertyValue> propertyValues = new ArrayList<>();
-        String sql = "select * from propertyValue where productId = ? order by id";
+        String sql = "select * from propertyvalue where productId = ? order by id";
         try (Connection c = DBUtil.getConnection(); PreparedStatement s = c.prepareStatement(sql)) {
             s.setInt(1, product.getId());
             ResultSet rs = s.executeQuery();

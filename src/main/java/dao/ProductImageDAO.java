@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ProductImageDAO {
     public void add(ProductImage productImage) {
-        String sql = "insert into productImage values(null, ?, ?)";
+        String sql = "insert into productimage values(null, ?, ?)";
         try (Connection c = DBUtil.getConnection(); PreparedStatement s = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             s.setString(1, productImage.getType());
             s.setInt(2, productImage.getProduct().getId());
@@ -24,7 +24,7 @@ public class ProductImageDAO {
 
     public void delete(int id) {
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
-            String sql = "delete from productImage where id = " + id;
+            String sql = "delete from productimage where id = " + id;
             s.execute(sql);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -34,7 +34,7 @@ public class ProductImageDAO {
     public ProductImage get(int id) {
         ProductImage productImage = null;
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
-            String sql = "select * from productImage where id = " + id;
+            String sql = "select * from productimage where id = " + id;
 
             ResultSet rs = s.executeQuery(sql);
             if (rs.next()) {
@@ -54,7 +54,7 @@ public class ProductImageDAO {
     }
     public List<ProductImage> list(Product product, String type, int start, int count) {
         List<ProductImage> ret = new ArrayList<>();
-        String sql = "select * from productImage where pid = ? and type = ? order by id limit ?, ?";
+        String sql = "select * from productimage where pid = ? and type = ? order by id limit ?, ?";
         try (Connection c = DBUtil.getConnection(); PreparedStatement s = c.prepareStatement(sql)) {
             s.setInt(1, product.getId());
             s.setString(2, type);
@@ -76,7 +76,7 @@ public class ProductImageDAO {
     }
 
     public void update(ProductImage p) {
-        String sql = "update productImage set type = ?, pid = ? where id = ?";
+        String sql = "update productimage set type = ?, pid = ? where id = ?";
         try (Connection c = DBUtil.getConnection(); PreparedStatement s = c.prepareStatement(sql)) {
             s.setInt(3, p.getId());
             s.setString(1, p.getType());
